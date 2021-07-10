@@ -1,0 +1,23 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Transform: 'Aliyun::Serverless-2018-04-03'
+Resources:
+  demo00:
+    Type: 'Aliyun::Serverless::Service'
+    Properties:
+      Description: This is demo00 service
+    demo:
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: index.handler
+        Runtime: nodejs12
+        Timeout: 60
+        MemorySize: 512
+        CodeUri: demo00\demo
+      Events:
+        httpTrigger:
+          Type: HTTP
+          Properties:
+            AuthType: ANONYMOUS
+            Methods:
+              - GET
+              - POST
